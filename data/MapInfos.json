@@ -1,6 +1,6 @@
 [
 null,
-{"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1208,"scrollY":662.6666666666666},
+{"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1186.6666666666667,"scrollY":572},
 {"id":2,"expanded":false,"name":"Деревенский дом (1 этаж)","order":2,"parentId":1,"scrollX":712,"scrollY":457.3333333333333},
 {"id":3,"expanded":false,"name":"Деревенский дом (2 этаж)","order":3,"parentId":1,"scrollX":712,"scrollY":457.3333333333333},
 {"id":4,"expanded":false,"name":"Рынок","order":9,"parentId":0,"scrollX":712,"scrollY":529.3333333333334},
