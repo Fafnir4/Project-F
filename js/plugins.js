@@ -6,5 +6,6 @@ var $plugins =
 {"name":"MadeWithMv","status":true,"description":"Show a Splash Screen \"Made with MV\" and/or a Custom Splash Screen before going to main screen.","parameters":{"Show Made With MV":"false","Made with MV Image":"MadeWithMv","Show Custom Splash":"false","Custom Image":"","Fade Out Time":"120","Fade In Time":"120","Wait Time":"160"}},
 {"name":"KODERA_optimization","status":true,"description":"1.0.3 Speed up core RPG Maker engine","parameters":{}},
 {"name":"HIME_SideviewActorEnemies","status":true,"description":"v1.2 - Allows you to use side-view actors as enemies.","parameters":{}},
-{"name":"NIA_SimpleCrafting","status":true,"description":"Simple crafting system.","parameters":{}}
+{"name":"NIA_SimpleCrafting","status":true,"description":"Simple crafting system.","parameters":{}},
+{"name":"SRD_FullscreenToggleOption","status":true,"description":"Adds a Fullscreen Toggle to the Options Window","parameters":{"Option Name":"Полный экран","Position":"Middle","Default Value":"true","Persist Default?":"false"}}
 ];
