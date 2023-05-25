@@ -7,5 +7,5 @@ var $plugins =
 {"name":"KODERA_optimization","status":true,"description":"1.0.3 Speed up core RPG Maker engine","parameters":{}},
 {"name":"HIME_SideviewActorEnemies","status":true,"description":"v1.2 - Allows you to use side-view actors as enemies.","parameters":{}},
 {"name":"NIA_SimpleCrafting","status":true,"description":"Simple crafting system.","parameters":{}},
-{"name":"SRD_FullscreenToggleOption","status":true,"description":"Adds a Fullscreen Toggle to the Options Window","parameters":{"Option Name":"Полный экран","Position":"Middle","Default Value":"true","Persist Default?":"false"}}
+{"name":"SRD_FullscreenToggleOption","status":true,"description":"Adds a Fullscreen Toggle to the Options Window","parameters":{"Option Name":"Полный экран","Position":"Middle","Default Value":"true","Persist Default?":"true"}}
 ];
