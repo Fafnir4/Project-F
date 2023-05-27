@@ -17,5 +17,5 @@ null,
 {"id":15,"atypeId":4,"description":"","etypeId":6,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":141,"name":"Железные поножи","note":"","params":[0,0,0,30,0,30,-10,0],"price":280},
 {"id":16,"atypeId":3,"description":"","etypeId":7,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":142,"name":"Кожаные перчатки","note":"","params":[0,0,5,15,0,15,0,0],"price":250},
 {"id":17,"atypeId":7,"description":"","etypeId":5,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":146,"name":"Ожерелье","note":"","params":[100,0,0,0,0,0,0,10],"price":150},
-{"id":18,"atypeId":7,"description":"Могут носить все.","etypeId":3,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":134,"name":"Диадема","note":"","params":[0,20,0,5,10,5,0,0],"price":250}
+{"id":18,"atypeId":7,"description":"Могут носить все классы.","etypeId":3,"traits":[{"code":22,"dataId":1,"value":0}],"iconIndex":134,"name":"Диадема","note":"","params":[0,20,0,5,10,5,0,0],"price":250}
 ]
