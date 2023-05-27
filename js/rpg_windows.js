@@ -27,8 +27,8 @@ Window_Base.prototype.initialize = function(x, y, width, height) {
     this._dimmerSprite = null;
 };
 
-Window_Base._iconWidth  = 32;
-Window_Base._iconHeight = 32;
+Window_Base._iconWidth  = 24;
+Window_Base._iconHeight = 24;
 Window_Base._faceWidth  = 144;
 Window_Base._faceHeight = 144;
 
