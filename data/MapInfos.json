@@ -19,6 +19,7 @@ null,
 {"id":17,"expanded":false,"name":"Демонический замок (2 этаж)","order":36,"parentId":15,"scrollX":1280,"scrollY":1668},
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 {"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1070.6666666666667,"scrollY":756},
 =======
 {"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1081.3333333333333,"scrollY":607.3333333333334},
@@ -26,6 +27,9 @@ null,
 =======
 {"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1081.3333333333333,"scrollY":607.3333333333334},
 >>>>>>> parent of 3e92598 (icn)
+=======
+{"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1070.6666666666667,"scrollY":617.3333333333334},
+>>>>>>> parent of 22e39fa (Dead King)
 {"id":19,"expanded":false,"name":"Дом 2","order":5,"parentId":1,"scrollX":1228.5,"scrollY":668.25},
 {"id":20,"expanded":false,"name":"Банк","order":18,"parentId":7,"scrollX":722.6666666666666,"scrollY":406.6666666666667},
 {"id":21,"expanded":false,"name":"Лавовая пещера","order":42,"parentId":13,"scrollX":1424,"scrollY":904},
