@@ -18,7 +18,11 @@ null,
 {"id":16,"expanded":false,"name":"Демонический замок (1 этаж)","order":35,"parentId":15,"scrollX":1109.3333333333333,"scrollY":582.6666666666666},
 {"id":17,"expanded":false,"name":"Демонический замок (2 этаж)","order":36,"parentId":15,"scrollX":1280,"scrollY":1668},
 <<<<<<< HEAD
+<<<<<<< HEAD
 {"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1070.6666666666667,"scrollY":756},
+=======
+{"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1081.3333333333333,"scrollY":607.3333333333334},
+>>>>>>> parent of 3e92598 (icn)
 =======
 {"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1081.3333333333333,"scrollY":607.3333333333334},
 >>>>>>> parent of 3e92598 (icn)
