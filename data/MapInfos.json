@@ -2,7 +2,7 @@
 null,
 {"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1390.2857142857142,"scrollY":1156.2857142857142},
 {"id":2,"expanded":false,"name":"Деревенский дом (1 этаж)","order":2,"parentId":1,"scrollX":1404,"scrollY":763.7142857142857},
-{"id":3,"expanded":false,"name":"Деревенский дом (2 этаж)","order":3,"parentId":1,"scrollX":1228.5,"scrollY":668.25},
+{"id":3,"expanded":false,"name":"Деревенский дом (2 этаж)","order":3,"parentId":1,"scrollX":712,"scrollY":457.3333333333333},
 {"id":4,"expanded":false,"name":"Рынок","order":9,"parentId":0,"scrollX":1228.5,"scrollY":668.25},
 {"id":5,"expanded":false,"name":"Постоялый двор (1 этаж)","order":10,"parentId":4,"scrollX":534,"scrollY":430},
 {"id":6,"expanded":false,"name":"Постоялый двор (2 этаж)","order":11,"parentId":5,"scrollX":534,"scrollY":415},
