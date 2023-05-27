@@ -1,6 +1,6 @@
 [
 null,
-{"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1081.3333333333333,"scrollY":1210},
+{"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1390.2857142857142,"scrollY":1156.2857142857142},
 {"id":2,"expanded":false,"name":"Деревенский дом (1 этаж)","order":2,"parentId":1,"scrollX":1404,"scrollY":763.7142857142857},
 {"id":3,"expanded":false,"name":"Деревенский дом (2 этаж)","order":3,"parentId":1,"scrollX":1092,"scrollY":594},
 {"id":4,"expanded":false,"name":"Рынок","order":9,"parentId":0,"scrollX":1228.5,"scrollY":668.25},
@@ -17,7 +17,11 @@ null,
 {"id":15,"expanded":true,"name":"Замок демонов","order":34,"parentId":0,"scrollX":1070.6666666666667,"scrollY":1344},
 {"id":16,"expanded":false,"name":"Демонический замок (1 этаж)","order":35,"parentId":15,"scrollX":1109.3333333333333,"scrollY":582.6666666666666},
 {"id":17,"expanded":false,"name":"Демонический замок (2 этаж)","order":36,"parentId":15,"scrollX":1280,"scrollY":1668},
+<<<<<<< HEAD
 {"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1070.6666666666667,"scrollY":756},
+=======
+{"id":18,"expanded":false,"name":"Демонический замок (3 этаж)","order":37,"parentId":15,"scrollX":1081.3333333333333,"scrollY":607.3333333333334},
+>>>>>>> parent of 3e92598 (icn)
 {"id":19,"expanded":false,"name":"Дом 2","order":5,"parentId":1,"scrollX":1228.5,"scrollY":668.25},
 {"id":20,"expanded":false,"name":"Банк","order":18,"parentId":7,"scrollX":722.6666666666666,"scrollY":406.6666666666667},
 {"id":21,"expanded":false,"name":"Лавовая пещера","order":42,"parentId":13,"scrollX":1424,"scrollY":904},
