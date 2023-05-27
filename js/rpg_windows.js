@@ -28,7 +28,7 @@ Window_Base.prototype.initialize = function(x, y, width, height) {
 };
 
 Window_Base._iconWidth  = 24;
-Window_Base._iconHeight = 24;
+Window_Base._iconHeight = 26;
 Window_Base._faceWidth  = 144;
 Window_Base._faceHeight = 144;
 
