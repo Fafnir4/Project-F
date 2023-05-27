@@ -1,7 +1,7 @@
 [
 null,
 {"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1390.2857142857142,"scrollY":1156.2857142857142},
-{"id":2,"expanded":false,"name":"Деревенский дом (1 этаж)","order":2,"parentId":1,"scrollX":712,"scrollY":457.3333333333333},
+{"id":2,"expanded":true,"name":"Деревенский дом (1 этаж)","order":2,"parentId":1,"scrollX":712,"scrollY":457.3333333333333},
 null,
 {"id":4,"expanded":true,"name":"Рынок","order":9,"parentId":0,"scrollX":712,"scrollY":668},
 {"id":5,"expanded":false,"name":"Постоялый двор (1 этаж)","order":10,"parentId":4,"scrollX":712,"scrollY":553.3333333333334},
@@ -31,7 +31,7 @@ null,
 {"id":29,"expanded":true,"name":"Руины","order":31,"parentId":23,"scrollX":1445.3333333333333,"scrollY":813.3333333333334},
 {"id":30,"expanded":true,"name":"Побережье","order":33,"parentId":11,"scrollX":1424,"scrollY":1106.6666666666667},
 {"id":31,"expanded":false,"name":"Магазин","order":16,"parentId":7,"scrollX":1404,"scrollY":763.7142857142857},
-{"id":32,"expanded":false,"name":"Дом 1","order":6,"parentId":1,"scrollX":1228.5,"scrollY":668.25},
+{"id":32,"expanded":false,"name":"Дом 1","order":6,"parentId":1,"scrollX":722.6666666666666,"scrollY":406.6666666666667},
 {"id":33,"expanded":false,"name":"Заброшенный дом","order":7,"parentId":1,"scrollX":1228.5,"scrollY":668.25},
 {"id":34,"expanded":false,"name":"Дом 3","order":8,"parentId":1,"scrollX":1228.5,"scrollY":668.25},
 {"id":35,"expanded":false,"name":"Таверна","order":17,"parentId":7,"scrollX":1404,"scrollY":763.7142857142857},
@@ -55,5 +55,5 @@ null,
 {"id":53,"expanded":false,"name":"Большой дом (1 этаж)","order":53,"parentId":49,"scrollX":776,"scrollY":849.3333333333334},
 {"id":54,"expanded":false,"name":"Большой дом (2 этаж)","order":54,"parentId":53,"scrollX":816,"scrollY":800},
 {"id":55,"expanded":false,"name":"Гавань","order":55,"parentId":49,"scrollX":712,"scrollY":793.3333333333334},
-{"id":56,"expanded":false,"name":"Деревенский дом (2 этаж)","order":3,"parentId":2,"scrollX":712,"scrollY":406.6666666666667}
+{"id":56,"expanded":false,"name":"Деревенский дом (2 этаж)","order":3,"parentId":2,"scrollX":712,"scrollY":457.3333333333333}
 ]
