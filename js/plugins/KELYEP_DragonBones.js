@@ -8,11 +8,11 @@ Imported.KELYEP_DragonBones = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.KelBattle = Yanfly.KelBattle || {};
-Yanfly.KelBattle.version = 1.05;
+Yanfly.KelBattle.version = 1.00;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 DragonBones Integration with YEP library compatibility!
+ * @plugindesc v1.00 DragonBones Integration with YEP library compatibility!
  * Use DragonBones assets with your battlers!
  * @author Yanfly Engine Plugins + TheGreenKel Collaboration
  *
@@ -52,7 +52,7 @@ Yanfly.KelBattle.version = 1.05;
  * @type text[]
  * @desc This is a list of all DragonBones assets to be preloaded at
  * game launch after the database is fully loaded.
- * @default []
+ * @default ["Demon","DragonBoy","Ubbie","Swordsman"]
  *
  * @param Auto-Preload Battlers
  * @parent ---Preload---
@@ -212,9 +212,9 @@ Yanfly.KelBattle.version = 1.05;
  * plugin to make it compatible with Yanfly plugins, and possibly more.
  *
  * Usage:    
- *     1) After confirming your DragonBones Armature/Skeleton shares the name of
- *        your Battler, export DragonBones data (with Data Version set to 5.0)
- *        into the 'Assets Path' parameter. Default is 'dragonbones_assets'
+ *     1) After confirming your DragonBones Armature/Skeleton shares the name
+ *        of your Battler, export DragonBones data into the 'Assets Path'
+ *        parameter. Default is 'dragonbones_assets'
  * 
  *     2) Add the new armature data into 'Preload Assets' parameter
  * 
@@ -243,14 +243,6 @@ Yanfly.KelBattle.version = 1.05;
  *  
  *     8) Get more info/tutorial at forum link: 
  *        https://forums.rpgmakerweb.com/index.php?threads/rmmv-dragonbones-2d-animation-integration.81027/
- *
- * Important DragonBones Animation note:    
- *        A limitation of DragonBones Data version 5.0 is that you must use
- *        the same animation curves for position/rotation/scale keys.
- *        Below is an example of how the DragonBones and exported version
- *        differ because it prioritized the positions animation curve.
- *        https://gyazo.com/fd3539028c0ecadd2a727b99ac8398a4
- *        https://gyazo.com/e79427f5f5b5e4b56a15dfc2bf76253f
  *
  * ============================================================================
  * Notetags
@@ -443,33 +435,6 @@ Yanfly.KelBattle.version = 1.05;
  *    Width: 150
  *    Height: 180
  *   </DragonBone Settings>
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.05:
- * - Bugfix provided for crashes made by animations played on non-battler
- * sprites.
- *
- * Version 1.04:
- * - Bugfix provided by SwiftIllusion regarding the animation positioning on
- * DragonBones battlers.
- *
- * Version 1.03:
- * - Fixed an issue with state sprites appearing behind DragonBones assets.
- *
- * Version 1.02:
- * - Change to collapse effect occuring after death animation is completed so
- * that it fades away like normal instead of being stuck on the field.
- * Credits: Swift Illusion
- *
- * Version 1.01:
- * - If using YEP_X_AnimatedSVEnemies, enemies with DragonBones battlers will
- * be considered animated enemies, too.
- *
- * Version 1.00:
- * - Finished Plugin!
  */
 //=============================================================================
 
@@ -862,9 +827,7 @@ Spriteset_Battle.prototype.createEnemies = function() {
                 //dragonBonesIntegration.ArmatureDatabaseEnemy
                 //[this.dragonboneIndex].animation.play(idleAnimation);
                 dragonBonesIntegration.PlayAnimationOnBattler(this, "walk");
-              } else {
-                dragonBonesIntegration.Game_Enemy_prototype_performCollapse.call(this);
-              };
+              }
               break;
             default:
               //nothing
@@ -995,68 +958,6 @@ Spriteset_Battle.prototype.createActors = function() {
     }
 
     this._battleField.addChild(this._actorSprites[i]);
-  }
-};
-
-//=============================================================================
-// Sprite_Animation
-// ----------------------------------------------------------------------------
-// Code provided by SwiftIllusion
-//=============================================================================
-
-dragonBonesIntegration.Sprite_Animation_updatePosition =
-  Sprite_Animation.prototype.updatePosition;
-Sprite_Animation.prototype.updatePosition = function() {
-  dragonBonesIntegration.Sprite_Animation_updatePosition.call(this);
-  this.updateDragonBonesPosition();
-};
-
-Sprite_Animation.prototype.updateDragonBonesPosition = function() {
-  var position = this._animation.position;
-  if (position === 3) return;
-  var battler = this._target._battler;
-  if (typeof battler != 'undefined') {
-    var data = battler.isActor() ? battler.actor() : battler.enemy();
-    if (position === 0) {
-      this.y -= data.meta.dragonbone_height;
-    } else if (position === 1) {
-      this.y -= data.meta.dragonbone_height / 2;
-    }
-  } else {
-    var battler = this._target.parent._battler;
-    if (battler && battler.hasDragonBone) {
-      var data = battler.isActor() ? battler.actor() : battler.enemy();
-      if (position === 0) {
-        this.y -= data.meta.dragonbone_height;
-      } else if (position === 1) {
-        this.y -= data.meta.dragonbone_height / 2;
-      }
-    }
-  }
-};
-
-//=============================================================================
-// Sprite_Battler
-// ----------------------------------------------------------------------------
-// Code provided by Yanfly
-//=============================================================================
-
-dragonBonesIntegration.Sprite_Battler_update = Sprite_Battler.prototype.update;
-Sprite_Battler.prototype.update = function() {
-  dragonBonesIntegration.Sprite_Battler_update.call(this);
-  if (this._battler) this.updateStateIconSpritePosition()
-};
-
-Sprite_Battler.prototype.updateStateIconSpritePosition = function() {
-  if (this._dbStateSpritesUpdated !== undefined) return;
-  this._dbStateSpritesUpdated = true;
-  if (this._stateSprite) {
-    this.removeChild(this._stateSprite);
-    this.addChild(this._stateSprite);
-  }
-  if (this._stateIconSprite) {
-    this.removeChild(this._stateIconSprite);
-    this.addChild(this._stateIconSprite);
   }
 };
 
@@ -1344,36 +1245,6 @@ Game_Actor.prototype.battlerName = function() {
   return dragonBonesIntegration.Game_Actor_battlerName.call(this);
 };
 
-dragonBonesIntegration.Game_Actor_spriteWidth =
-  Game_Actor.prototype.spriteWidth;
-Game_Actor.prototype.spriteWidth = function() {
-  if (this.isReplacedByDragonBonesBattler()) {
-    if (this.isActor()) {
-      return this.actor().meta.dragonbone_width;
-    } else if (this.isEnemy()) {
-      return this.enemy().meta.dragonbone_width;
-    } else {
-      return 100;
-    }
-  }
-  return dragonBonesIntegration.Game_Actor_spriteWidth.call(this);
-};
-
-dragonBonesIntegration.Game_Actor_spriteHeight =
-  Game_Actor.prototype.spriteHeight;
-Game_Actor.prototype.spriteHeight = function() {
-  if (this.isReplacedByDragonBonesBattler()) {
-    if (this.isActor()) {
-      return this.actor().meta.dragonbone_height;
-    } else if (this.isEnemy()) {
-      return this.enemy().meta.dragonbone_height;
-    } else {
-      return 100;
-    }
-  }
-  return dragonBonesIntegration.Game_Actor_spriteHeight.call(this);
-};
-
 //=============================================================================
 // Game_Enemy
 // ----------------------------------------------------------------------------
@@ -1388,45 +1259,14 @@ Game_Enemy.prototype.battlerName = function() {
 };
 
 //=============================================================================
-// YEP_X_AnimatedSVEnemies Compatibility
-// ----------------------------------------------------------------------------
-// Code provided by Yanfly
-//=============================================================================
-
-if (Imported.YEP_X_AnimatedSVEnemies) {
-
-dragonBonesIntegration.Game_Enemy_hasSVBattler =
-  Game_Enemy.prototype.hasSVBattler;
-Game_Enemy.prototype.hasSVBattler = function() {
-  if (this._hasSvBattler === undefined) {
-    this._hasSvBattler = 
-      dragonBonesIntegration.Game_Enemy_hasSVBattler.call(this) ||
-      this.hasDragonBone;
-  }
-  return this._hasSvBattler;
-};
-
-dragonBonesIntegration.Game_Enemy_spriteScaleX =
-  Game_Enemy.prototype.spriteScaleX;
-Game_Enemy.prototype.spriteScaleX = function() {
-  if (this.hasDragonBone && this.hasSVBattler()) {
-    return this.enemy().spriteScaleX;
-  } else {
-    return dragonBonesIntegration.Game_Enemy_spriteScaleX.call(this);
-  }
-};
-
-}; // YEP_X_AnimatedSVEnemies
-
-//=============================================================================
 // End of Main Functions
 //=============================================================================
 } else {
 
 var text = '';
-text += 'You are getting this error because you are trying to run DragonBones ';
-text += 'Integration while your project files are lower than version 1.4.0.\n';
-text += '\nPlease visit this thread for instructions on how to update your ';
+text += 'You are getting this error because you are trying to run FPS Synch ';
+text += 'Options while your project files are lower than version 1.4.0. \n\n';
+text += 'Please visit this thread for instructions on how to update your ';
 text += 'project files to 1.4.0 or higher: \n\n';
 text += 'https://forums.rpgmakerweb.com/index.php?threads/';
 text += 'rpg-maker-mv-1-5-0-update.79677/';
