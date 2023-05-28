@@ -8,11 +8,11 @@ Imported.YEP_X_CoreUpdatesOpt = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Updates = Yanfly.Updates || {};
-Yanfly.Updates.version = 1.62;
+Yanfly.Updates.version = 1.61;
 
 //=============================================================================
  /*:
- * @plugindesc v1.62 (Req YEP_CoreEngine.js) Update your game without needing
+ * @plugindesc v1.61 (Req YEP_CoreEngine.js) Update your game without needing
  * to change your base rpg_x.js files and optimize it for desktop.
  * @author Yanfly Engine Plugins
  *
@@ -7775,76 +7775,6 @@ if (Yanfly.Param.UpdateDesktop) {
 // This is done for compatibility reasons.
 Utils.RPGMAKER_VERSION.Yanfly = true;
 
-// Replaced ForEach
-Sprite.prototype.update = function() {
-  var length = this.children.length;
-  for (var i = 0; i < length; ++i) {
-    var child = this.children[i];
-    if (child && child.update) child.update();
-  };
-};
-
-// Replaced ForEach
-Tilemap.prototype.update = function() {
-  this.animationCount++;
-  this.animationFrame = Math.floor(this.animationCount / 30);
-  var length = this.children.length;
-  for (var i = 0; i < length; ++i) {
-    var child = this.children[i];
-    if (child && child.update) child.update();
-  }
-  var length = this.bitmaps.length;
-  for (var i = 0; i < length; ++i) {
-    if (this.bitmaps[i]) this.bitmaps[i].touch();
-  }
-};
-
-// Replaced ForEach
-TilingSprite.prototype.update = function() {
-  var length = this.children.length;
-  for (var i = 0; i < length; ++i) {
-    var child = this.children[i];
-    if (child && child.update) child.update();
-  }
-};
-
-// Replaced ForEach
-Window.prototype.update = function() {
-  if (this.active) this._animationCount++;
-  var length = this.children.length;
-  for (var i = 0; i < length; ++i) {
-    var child = this.children[i];
-    if (child && child.update) child.update();
-  }
-};
-
-// Replaced ForEach
-WindowLayer.prototype.update = function() {
-  var length = this.children.length;
-  for (var i = 0; i < length; ++i) {
-    var child = this.children[i];
-    if (child && child.update) child.update();
-  }
-};
-
-// Replaced ForEach
-Weather.prototype._updateAllSprites = function() {
-  var maxSprites = Math.floor(this.power * 10);
-  while (this._sprites.length < maxSprites) {
-    this._addSprite();
-  }
-  while (this._sprites.length > maxSprites) {
-    this._removeSprite();
-  }
-  var length = this._sprites.length;
-  for (var i = 0; i < length; ++i) {
-    var sprite = this._sprites[i];
-    this._updateSprite(sprite);
-    sprite.x = sprite.ax - this.origin.x;
-    sprite.y = sprite.ay - this.origin.y;
-  }
-};
-
 //-----------------------------------------------------------------------------
 // Desktop Optimizatioin rpg_managers.js Changes
 //-----------------------------------------------------------------------------
@@ -8007,15 +7937,6 @@ Scene_Base.prototype.update = function() {
   AudioManager.checkErrors();
 };
 
-// Replaced ForEach
-Scene_Base.prototype.updateChildren = function() {
-  var length = this.children.length;
-  for (var i = 0; i < length; ++i) {
-    var child = this.children[i];
-    if (child.update) child.update();
-  }
-};
-
 // Loaded image instead of reserving it
 Scene_Boot.prototype.loadSystemWindowImage = function() {
   ImageManager.loadSystem('Window');
@@ -8069,22 +7990,6 @@ Scene_Map.prototype.terminate = function() {
 Scene_Menu.prototype.createStatusWindow = function() {
   this._statusWindow = new Window_MenuStatus(this._commandWindow.width, 0);
   this.addWindow(this._statusWindow);
-};
-
-// Replaced ForEach
-Scene_ItemBase.prototype.applyItem = function() {
-    var action = new Game_Action(this.user());
-    action.setItemObject(this.item());
-    var repeats = action.numRepeats();
-    var items = this.itemTargetActors();
-    var length = items.length;
-    for (var i = 0; i < length; ++i) {
-      var target = items[i];
-      for (var j = 0; j < repeats; ++j) {
-        action.apply(target);
-      }
-    };
-    action.applyGlobal();
 };
 
 // Refreshing the actor now occurs upon creation and instead of start
@@ -8145,19 +8050,6 @@ Scene_Battle.prototype.terminate = function() {
 // Ready preparation now refers to fully loaded instead of reservation
 Sprite_Animation.prototype.isReady = function() {
   return ImageManager.isReady();
-};
-
-// Replaced ForEach
-Sprite_Animation.prototype.updateFrame = function() {
-  if (this._duration > 0) {
-    var frameIndex = this.currentFrameIndex();
-    this.updateAllCellSprites(this._animation.frames[frameIndex]);
-    var length = this._animation.timings.length;
-    for (var i = 0; i < length; ++i) {
-      var timing = this._animation.timings[i];
-      if (timing.frame === frameIndex) this.processTimingData(timing);
-    };
-  }
 };
 
 // Cleaning algorithm up
@@ -8276,24 +8168,6 @@ Window_Message.prototype.drawMessageFace = function() {
 //=============================================================================
 
 }; // Yanfly.Param.UpdateDesktop
-
-//=============================================================================
-// Maximize Path Finding
-//=============================================================================
-
-ImageManager.loadNormalBitmap = function(path, hue) {
-  var key = path + ':' + hue;
-  var bitmap = this.cache.getItem(key);
-  if (!bitmap) {
-    bitmap = Bitmap.load(decodeURIComponent(path))
-    bitmap.addLoadListener(function() {
-        bitmap.rotateHue(hue);
-    });
-    this.cache.setItem(key, bitmap);
-  }
-  return bitmap;
-};
-
 
 //-----------------------------------------------------------------------------
 

@@ -8,11 +8,11 @@ Imported.YEP_X_ActSeqPack2 = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ASP2 = Yanfly.ASP2 || {};
-Yanfly.ASP2.version = 1.13;
+Yanfly.ASP2.version = 1.12;
 
 //=============================================================================
  /*:
- * @plugindesc v1.13 (Requires YEP_BattleEngineCore.js) Visual functions
+ * @plugindesc v1.12 (Requires YEP_BattleEngineCore.js) Visual functions
  * are added to the Battle Engine Core's action sequences.
  * @author Yanfly Engine Plugins
  *
@@ -451,9 +451,6 @@ Yanfly.ASP2.version = 1.13;
  * Changelog
  * ============================================================================
  *
- * Version 1.13:
- * - Updated Float and Jump to allow for negative values.
- *
  * Version 1.12:
  * - Updated for RPG Maker MV version 1.5.0.
  * - Added new Offset X, Offset Y, arguments for the Move action sequence.
@@ -768,10 +765,10 @@ BattleManager.actionFloat = function(name, actionArgs) {
     var cmd = actionArgs[0];
     var frames = actionArgs[1] || 12;
     var pixels = 0;
-    if (cmd.match(/(.*)([%％])/i)) {
+    if (cmd.match(/(\d+)([%％])/i)) {
       var floatPeak = parseFloat(RegExp.$1 * 0.01);
     } else if (cmd.match(/(\d+)/i)) {
-      pixels = parseInt(cmd) || 0;
+      pixels = parseInt(RegExp.$1);
       var floatPeak = 0.0;
     } else {
       var floatPeak = 1.0;
@@ -789,10 +786,10 @@ BattleManager.actionJump = function(name, actionArgs) {
     var cmd = actionArgs[0];
     var frames = actionArgs[1] || 12;
     var pixels = 0;
-    if (cmd.match(/(.*)([%％])/i)) {
+    if (cmd.match(/(\d+)([%％])/i)) {
       var jumpPeak = parseFloat(RegExp.$1 * 0.01);
     } else if (cmd.match(/(\d+)/i)) {
-      pixels = parseInt(cmd) || 0;
+      pixels = parseInt(RegExp.$1);
       var jumpPeak = 0.0;
     } else {
       var jumpPeak = 1.0;

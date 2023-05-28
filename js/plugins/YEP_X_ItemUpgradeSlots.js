@@ -8,11 +8,11 @@ Imported.YEP_X_ItemUpgrades = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.IUS = Yanfly.IUS || {};
-Yanfly.IUS.version = 1.10;
+Yanfly.IUS.version = 1.09;
 
 //=============================================================================
  /*:
- * @plugindesc v1.10 (Requires YEP_ItemCore.js) Allows independent items to
+ * @plugindesc v1.09 (Requires YEP_ItemCore.js) Allows independent items to
  * be upgradeable and gain better stats.
  * @author Yanfly Engine Plugins
  *
@@ -207,9 +207,6 @@ Yanfly.IUS.version = 1.10;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.10:
- * - Changed upgrade command from appearing if there are 0 slots as a baseline.
  *
  * Version 1.09:
  * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
@@ -1055,9 +1052,6 @@ Window_ItemActionCommand.prototype.addCustomCommandsD = function() {
 Window_ItemActionCommand.prototype.addUpgradeCommand = function() {
     if (Yanfly.Param.IUSUpgradeCmd === '') return;
     if (!$gameSystem.itemUpgradeShow()) return;
-    if (!this._item) return;
-    this._item.upgradeSlots = this._item.upgradeSlots || 0;
-    if (this._item.upgradeSlots <= 0) return;
     var enabled = DataManager.isIndependent(this._item);
     if (eval(Yanfly.Param.IUSShowOnly) && !enabled) return;
     if (!$gameSystem.itemUpgradeEnabled()) enabled = false;

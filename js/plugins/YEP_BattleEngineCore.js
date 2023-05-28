@@ -8,11 +8,11 @@ Imported.YEP_BattleEngineCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.BEC = Yanfly.BEC || {};
-Yanfly.BEC.version = 1.51;
+Yanfly.BEC.version = 1.49;
 
 //=============================================================================
  /*:
- * @plugindesc v1.51 Have more control over the flow of the battle system
+ * @plugindesc v1.49 Have more control over the flow of the battle system
  * with this plugin and alter various aspects to your liking.
  * @author Yanfly Engine Plugins
  *
@@ -882,12 +882,6 @@ Yanfly.BEC.version = 1.51;
  * Changelog
  * ============================================================================
  *
- * Version 1.51:
- * - Fixed updateBattlerName function. Thanks to ZServ.
- *
- * Version 1.50:
- * - Action sequences allow for unlimited arguments now.
- *
  * Version 1.49:
  * - Added failsafe for 'furthestRight()' errors.
  *
@@ -1435,20 +1429,48 @@ DataManager.addActionEffects = function(obj, array) {
     obj.repeats = 1;
 };
 
+Yanfly.BEC.SeqType6 =
+  /[ ]*(.*):[ ](.*),[ ](.*),[ ](.*),[ ](.*),[ ](.*),[ ](.*)/i;
+Yanfly.BEC.SeqType5 =
+  /[ ]*(.*):[ ](.*),[ ](.*),[ ](.*),[ ](.*),[ ](.*)/i;
+Yanfly.BEC.SeqType4 =
+  /[ ]*(.*):[ ](.*),[ ](.*),[ ](.*),[ ](.*)/i;
+Yanfly.BEC.SeqType3 =
+  /[ ]*(.*):[ ](.*),[ ](.*),[ ](.*)/i;
+Yanfly.BEC.SeqType2 =
+  /[ ]*(.*):[ ](.*),[ ](.*)/i;
+Yanfly.BEC.SeqType1 =
+  /[ ]*(.*):[ ](.*)/i;
+Yanfly.BEC.SeqType0 =
+  /[ ]*(.*)/i;
 DataManager.convertSequenceLine = function(obj, line, actionType) {
   if (actionType <= 0 || actionType > 5) return;
   Yanfly.BEC.SeqType;
   var seqArgs;
-  if (line.match(/[ ]*(.*):[ ](.*)/i)) {
-    Yanfly.BEC.SeqType = RegExp.$1.trim();
-    seqArgs = RegExp.$2.split(',');
-    var length = seqArgs.length;
-    for (var i = 0; i < length; ++i) {
-      seqArgs[i] = seqArgs[i].trim();
-    }
-  } else {
-    Yanfly.BEC.SeqType = line.trim();
+  if (line.match(Yanfly.BEC.SeqType6)) {
+    Yanfly.BEC.SeqType = RegExp.$1;
+    seqArgs =
+      [RegExp.$2, RegExp.$3, RegExp.$4, RegExp.$5, RegExp.$6, RegExp.$7];
+  } else if (line.match(Yanfly.BEC.SeqType5)) {
+    Yanfly.BEC.SeqType = RegExp.$1;
+    seqArgs = [RegExp.$2, RegExp.$3, RegExp.$4, RegExp.$5, RegExp.$6];
+  } else if (line.match(Yanfly.BEC.SeqType4)) {
+    Yanfly.BEC.SeqType = RegExp.$1;
+    seqArgs = [RegExp.$2, RegExp.$3, RegExp.$4, RegExp.$5];
+  } else if (line.match(Yanfly.BEC.SeqType3)) {
+    Yanfly.BEC.SeqType = RegExp.$1;
+    seqArgs = [RegExp.$2, RegExp.$3, RegExp.$4];
+  } else if (line.match(Yanfly.BEC.SeqType2)) {
+    Yanfly.BEC.SeqType = RegExp.$1;
+    seqArgs = [RegExp.$2, RegExp.$3];
+  } else if (line.match(Yanfly.BEC.SeqType1)) {
+    Yanfly.BEC.SeqType = RegExp.$1;
+    seqArgs = [RegExp.$2];
+  } else if (line.match(Yanfly.BEC.SeqType0)) {
+    Yanfly.BEC.SeqType = RegExp.$1;
     seqArgs = [];
+  } else {
+    return;
   }
   var array = [Yanfly.BEC.SeqType, seqArgs];
   if (actionType === 1) obj.setupActions[obj.setupActions.length] = array;
@@ -2036,7 +2058,7 @@ BattleManager.loadPreForceActionSettings = function() {
       return this._subject && this._subject.isAppeared();
     } else {
       return false;
-    }
+    }    
 };
 
 BattleManager.resetPreForceActionSettings = function(settings) {
@@ -2586,9 +2608,7 @@ BattleManager.makeActionTargets = function(string) {
           if (this._targets.contains(target)) continue;
 
           if (target.isDead()) {
-            if (Imported.KELYEP_DragonBones && target.isEnemy() && target.hasDragonBone) {
-              continue;
-            } else if (Imported.YEP_X_AnimatedSVEnemies && target.isEnemy()) {
+            if (Imported.YEP_X_AnimatedSVEnemies && target.isEnemy()) {
               if (target.hasSVBattler() && !target.sideviewCollapse()) {
                 // Ignore
               } else {
@@ -5167,11 +5187,10 @@ Window_EnemyVisualSelect.prototype.updateWindowAspects = function() {
 };
 
 Window_EnemyVisualSelect.prototype.updateBattlerName = function() {
-    if (this._battlerName !== this._battler.name()) {
-        this._battlerName = this._battler.name();
-        this._requestRefresh = true;
-        this._nameTextWidth = undefined;
-    }
+    if (this._battlerName !== this._battler.name())
+    this._battlerName = this._battler.name();
+    this._requestRefresh = true;
+    this._nameTextWidth = undefined;
 };
 
 Window_EnemyVisualSelect.prototype.updateWindowSize = function() {

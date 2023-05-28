@@ -828,6 +828,7 @@ Spriteset_Battle.prototype.updatePosition = function() {
       this.x = Math.round(screenX);
       this.y = Math.round(screenY);
     }
+    this.x += Math.round($gameScreen.shake());
 };
 
 //=============================================================================

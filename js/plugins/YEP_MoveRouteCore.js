@@ -8,11 +8,11 @@ Imported.YEP_MoveRouteCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.MoveRoute = Yanfly.MoveRoute || {};
-Yanfly.MoveRoute.version = 1.04;
+Yanfly.MoveRoute.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 Expand the number of movement options for the move
+ * @plugindesc v1.03 Expand the number of movement options for the move
  * route events using this plugin.
  * @author Yanfly Engine Plugins
  *
@@ -425,10 +425,6 @@ Yanfly.MoveRoute.version = 1.04;
  * Changelog
  * ============================================================================
  *
- * Version 1.04:
- * - Fixed a bug that caused UP, LEFT, RIGHT, DOWN repeats to stack when used
- * with a repeating movement pattern.
- *
  * Version 1.03:
  * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
  * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
@@ -462,7 +458,6 @@ Game_Character.prototype.processMoveCommand = function(command) {
   var gc = Game_Character;
   switch (command.code) {
   case gc.ROUTE_SCRIPT:
-    $gameTemp._moveCommand = command;
     this.processMoveRouteScriptCall(command.parameters[0]);
     break;
   default:
@@ -832,9 +827,7 @@ Game_Character.prototype.moveRepeat = function(direction, times) {
     command.code = gc.ROUTE_MOVE_UPPER_R;
     break;
   }
-  var index = this._moveRoute.list.indexOf($gameTemp._moveCommand);
   this._moveRoute = JsonEx.makeDeepCopy(this._moveRoute);
-  this._moveRoute.list[index].parameters[0] = '';
   while (times--) {
     this._moveRoute.list.splice(this._moveRouteIndex + 1, 0, command);
   }

@@ -8,11 +8,11 @@ Imported.YEP_CoreEngine = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Core = Yanfly.Core || {};
-Yanfly.Core.version = 1.32;
+Yanfly.Core.version = 1.31;
 
 //=============================================================================
 /*:
- * @plugindesc v1.32 Needed for the majority of Yanfly Engine Scripts. Also
+ * @plugindesc v1.31 Needed for the majority of Yanfly Engine Scripts. Also
  * contains bug fixes found inherently in RPG Maker.
  * @author Yanfly Engine Plugins
  *
@@ -595,8 +595,8 @@ Yanfly.Core.version = 1.32;
  *   the exact settings (usually due to animaitons), the volume stacks upon
  *   each other, causing them to not play the intended volume for the effect.
  *   This plugin fixes this issue by preventing sound effects of the same exact
- *   settings from playing during the same frame, allowing only the first to
- *   go through without stacking the volume higher.
+     settings from playing during the same frame, allowing only the first to
+     go through without stacking the volume higher.
  *
  * Event Movement Speed
  *   The movement speed of events are slightly slower than what they should be
@@ -719,10 +719,6 @@ Yanfly.Core.version = 1.32;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.32:
- * - Reversed the disable for the screen jitter fix from version 1.24. Somehow
- * it came back and I don't know when, but now it needs to go. 
  *
  * Version 1.31:
  * - Added Fallen Angel Olivia's full error message display to the Core Engine
@@ -1622,7 +1618,6 @@ Game_Party.prototype.onPlayerWalk = function() {
 //=============================================================================
 
 Yanfly.isPreventScreenJittering = function() {
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.5.0') return true;
   if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.3.4') return false;
   return true;
 };

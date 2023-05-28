@@ -8,11 +8,11 @@ Imported.KELYEP_DragonBones = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.KelBattle = Yanfly.KelBattle || {};
-Yanfly.KelBattle.version = 1.09;
+Yanfly.KelBattle.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.09 DragonBones Integration with YEP library compatibility!
+ * @plugindesc v1.05 DragonBones Integration with YEP library compatibility!
  * Use DragonBones assets with your battlers!
  * @author Yanfly Engine Plugins + TheGreenKel Collaboration
  *
@@ -447,20 +447,6 @@ Yanfly.KelBattle.version = 1.09;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.09;
- * - Bugfix updated by SwiftIllusion to make sure blend color are inherited
- * by actor Dragonbones sprites.
- *
- * Version 1.08:
- * - Bugfix by Irina & SwiftIllusion for Flash Colors on Dragonbones battlers
- *
- * Version 1.07:
- * - Bugfixed for animation height rate for Dragonbones battlers.
- *
- * Version 1.06:
- * - Bugfix for Action Sequences for Jump and Float not affecting units with
- * DragonBones battlers.
  *
  * Version 1.05:
  * - Bugfix provided for crashes made by animations played on non-battler
@@ -906,7 +892,6 @@ Spriteset_Battle.prototype.createEnemies = function() {
         }
 
         sprites[i].addChild(dragonBonesIntegration.ArmatureDatabaseEnemy[i]);
-        sprites[i]._dragonboneSprite = dragonBonesIntegration.ArmatureDatabaseEnemy[i];
       }
 
     } else {
@@ -1005,7 +990,6 @@ Spriteset_Battle.prototype.createActors = function() {
           }
           var actorData = dragonBonesIntegration.ArmatureDatabaseActor[i];
           this._actorSprites[i].addChild(actorData);
-          this._actorSprites[i]._dragonboneSprite = actorData;
         }                    
       }
     }
@@ -1031,18 +1015,13 @@ Sprite_Animation.prototype.updateDragonBonesPosition = function() {
   var position = this._animation.position;
   if (position === 3) return;
   var battler = this._target._battler;
-  if (!this._target) return;
-  if (!this._target._battler && (this._target._battler !== undefined)) return;
-  if (battler !== undefined) {
+  if (typeof battler != 'undefined') {
     var data = battler.isActor() ? battler.actor() : battler.enemy();
     if (position === 0) {
       this.y -= data.meta.dragonbone_height;
     } else if (position === 1) {
       this.y -= data.meta.dragonbone_height / 2;
     }
-    var heightRate = battler.battler().getFloatHeight() + battler.battler().getJumpHeight();
-    var height = heightRate * data.meta.dragonbone_height;
-    this.y -= height;
   } else {
     var battler = this._target.parent._battler;
     if (battler && battler.hasDragonBone) {
@@ -1052,9 +1031,6 @@ Sprite_Animation.prototype.updateDragonBonesPosition = function() {
       } else if (position === 1) {
         this.y -= data.meta.dragonbone_height / 2;
       }
-      var heightRate = battler.battler().getFloatHeight() + battler.battler().getJumpHeight();
-      var height = heightRate * data.meta.dragonbone_height;
-      this.y -= height;
     }
   }
 };
@@ -1071,18 +1047,6 @@ Sprite_Battler.prototype.update = function() {
   if (this._battler) this.updateStateIconSpritePosition()
 };
 
-dragonBonesIntegration.Sprite_Battler_updatePosition = Sprite_Battler.prototype.updatePosition;
-Sprite_Battler.prototype.updatePosition = function() {
-    dragonBonesIntegration.Sprite_Battler_updatePosition.call(this);
-    if (Imported.YEP_X_ActSeqPack2 && this._battler.hasDragonBone) {
-        var battler = this._battler.isActor() ? this._battler.actor() : this._battler.enemy();
-        var heightRate = this.getFloatHeight() + this.getJumpHeight();
-        var height = battler.meta.dragonbone_height * heightRate;
-        this.anchor.y += height;
-        this.y -= height;
-    }
-};
-
 Sprite_Battler.prototype.updateStateIconSpritePosition = function() {
   if (this._dbStateSpritesUpdated !== undefined) return;
   this._dbStateSpritesUpdated = true;
@@ -1094,44 +1058,6 @@ Sprite_Battler.prototype.updateStateIconSpritePosition = function() {
     this.removeChild(this._stateIconSprite);
     this.addChild(this._stateIconSprite);
   }
-};
-
-// Code provided by Swift Illusion
-!function(t,n){"object"==typeof exports&&"undefined"!=typeof module?n(exports,require("pixi.js")):"function"==typeof define&&define.amd?define(["exports","pixi.js"],n):n(t.__filters={},t.PIXI)}(this,function(t,n){"use strict";var r="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}",e="varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform float gamma;\nuniform float contrast;\nuniform float saturation;\nuniform float brightness;\nuniform float red;\nuniform float green;\nuniform float blue;\nuniform float alpha;\n\nvoid main(void)\n{\n    vec4 c = texture2D(uSampler, vTextureCoord);\n\n    if (c.a > 0.0) {\n        c.rgb /= c.a;\n\n        vec3 rgb = pow(c.rgb, vec3(1. / gamma));\n        rgb = mix(vec3(.5), mix(vec3(dot(vec3(.2125, .7154, .0721), rgb)), rgb, saturation), contrast);\n        rgb.r *= red;\n        rgb.g *= green;\n        rgb.b *= blue;\n        c.rgb = rgb * brightness;\n\n        c.rgb *= c.a;\n    }\n\n    gl_FragColor = c * alpha;\n}\n",i=function(t){function n(n){t.call(this,r,e),Object.assign(this,{gamma:1,saturation:1,contrast:1,brightness:1,red:1,green:1,blue:1,alpha:1},n)}return t&&(n.__proto__=t),n.prototype=Object.create(t&&t.prototype),n.prototype.constructor=n,n.prototype.apply=function(t,n,r,e){this.uniforms.gamma=Math.max(this.gamma,1e-4),this.uniforms.saturation=this.saturation,this.uniforms.contrast=this.contrast,this.uniforms.brightness=this.brightness,this.uniforms.red=this.red,this.uniforms.green=this.green,this.uniforms.blue=this.blue,this.uniforms.alpha=this.alpha,t.applyFilter(this,n,r,e)},n}(n.Filter);t.DragonbonesFilter=i}),Object.assign(PIXI.filters,this.__filters);
-
-// Code provided by Irina and Swift Illusion
-Sprite_Base.prototype.setBlendColor = function(color) {
-  if (this._battler) {
-    if (this._dragonboneSprite) this.setDragonbonesSpriteFlashColor(color);
-  } else if (this.parent._battler) {
-    if (this.parent._dragonboneSprite) this.parent.setDragonbonesSpriteFlashColor(color);
-  }
-};
-
-Sprite_Battler.prototype.setDragonbonesSpriteFlashColor = function(color) {
-    this.setupDragonbonesSpriteFlashFilter();
-    this.updateDragonbonesSpriteFlashFilter(color);
-};
-
-Sprite_Battler.prototype.setupDragonbonesSpriteFlashFilter = function() {
-    var sprite = this._dragonboneSprite;
-    sprite._filters = sprite._filters || [];
-    if (sprite._flashFilter) return;
-    sprite._flashFilter = new PIXI.filters.DragonbonesFilter();
-    sprite._filters.push(sprite._flashFilter);
-};
-
-// Code provided by Irina, numbers by Swift Illusion
-Sprite_Battler.prototype.updateDragonbonesSpriteFlashFilter = function(color) {
-    var filter = this._dragonboneSprite._flashFilter;
-    if (!filter) return;
-    var baseline = 127.5; // 255 / 2
-    var intensity = (Math.max(0, color[3]) / 255);
-    filter.red   = 1 + intensity * ((color[0] / baseline) - 1);
-    filter.green = 1 + intensity * ((color[1] / baseline) - 1);
-    filter.blue  = 1 + intensity * ((color[2] / baseline) - 1);
-    filter.contrast = 1- intensity;
-    filter.brightness = 1;
 };
 
 //=============================================================================

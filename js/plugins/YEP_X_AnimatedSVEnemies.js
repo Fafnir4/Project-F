@@ -8,11 +8,11 @@ Imported.YEP_X_AnimatedSVEnemies = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.SVE = Yanfly.SVE || {};
-Yanfly.SVE.version = 1.20;
+Yanfly.SVE.version = 1.19;
 
 //=============================================================================
  /*:
- * @plugindesc v1.20 (Requires YEP_BattleEngineCore.js) This plugin lets
+ * @plugindesc v1.19 (Requires YEP_BattleEngineCore.js) This plugin lets
  * you use Animated Sideview Actors for enemies!
  * @author Yanfly Engine Plugins
  *
@@ -1648,10 +1648,6 @@ Yanfly.SVE.version = 1.20;
  * Changelog
  * ============================================================================
  *
- * Version 1.20:
- * - Bugfix provided by YoraeRasante regarding the animation positioning on
- * animated sideview enemies.
- *
  * Version 1.19:
  * - Bugfix provided by SwiftIllusion regarding the animation positioning on
  * animated sideview enemies.
@@ -2759,7 +2755,7 @@ Sprite_Enemy.prototype.forceMotion = function(motionType) {
 //=============================================================================
 // Sprite_Animation
 // ----------------------------------------------------------------------------
-// Code provided by SwiftIllusion and YoraeRasante
+// Code provided by SwiftIllusion
 //=============================================================================
 
 Yanfly.SVE.Sprite_Animation_updatePosition = 
@@ -2770,12 +2766,16 @@ Sprite_Animation.prototype.updatePosition = function() {
 };
 
 Sprite_Animation.prototype.updateSvePosition = function() {
-  if (typeof this._target.parent._battler != 'undefined' && this._target.parent._battler.isEnemy() && typeof this._target.parent._mainSprite != 'undefined'){
+  if (typeof this._target.parent._battler != 'undefined'){
     if (this._animation.position !== 3) {
       if (this._animation.position === 0) {
-        this.y += this._target.parent._mainSprite.height - this._target.parent.texture.height;
+        if (this._target.parent._battler.isEnemy()) {
+          this.y -= this._target.parent._texture.height;
+        };
       } else if (this._animation.position === 1) {
-        this.y += (this._target.parent._mainSprite.height - this._target.parent.texture.height) / 2;
+        if (this._target.parent._battler.isEnemy()) {
+          this.y -= this._target.parent._texture.height / 2;
+        };
       }
     }
   }
