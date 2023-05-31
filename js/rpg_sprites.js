@@ -1618,7 +1618,7 @@ Sprite_StateIcon._iconHeight = 32;
 
 Sprite_StateIcon.prototype.initMembers = function() {
     this._battler = null;
-    this._iconIndex = 0;
+    this._iconIndex = 4;
     this._animationCount = 0;
     this._animationIndex = 0;
     this.anchor.x = 0.5;
