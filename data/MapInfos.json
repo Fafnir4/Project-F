@@ -1,6 +1,6 @@
 [
 null,
-{"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1081.3333333333333,"scrollY":1242},
+{"id":1,"expanded":true,"name":"Рыбацкая деревня","order":1,"parentId":0,"scrollX":1081.3333333333333,"scrollY":1243.3333333333333},
 {"id":2,"expanded":true,"name":"Деревенский дом (1 этаж)","order":2,"parentId":1,"scrollX":652,"scrollY":518},
 {"id":3,"expanded":false,"name":"Скрытая поляна","order":32,"parentId":23,"scrollX":662.6666666666666,"scrollY":346},
 {"id":4,"expanded":true,"name":"Рынок","order":9,"parentId":0,"scrollX":613.1999999999999,"scrollY":850.1999999999999},
