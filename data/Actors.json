@@ -1,6 +1,6 @@
 [
 null,
-{"id":1,"battlerName":"Actor1_1","characterIndex":0,"characterName":"Actor1","classId":1,"equips":[15,0,0,0,0],"faceIndex":0,"faceName":"Actor1","traits":[{"code":21,"dataId":0,"value":1.1}],"initialLevel":99,"maxLevel":99,"name":"Гарольд","nickname":"","note":"","profile":""},
+{"id":1,"battlerName":"Actor1_1","characterIndex":0,"characterName":"Actor1","classId":1,"equips":[15,0,0,0,0],"faceIndex":0,"faceName":"Actor1","traits":[{"code":21,"dataId":0,"value":1.1}],"initialLevel":1,"maxLevel":99,"name":"Гарольд","nickname":"","note":"","profile":""},
 {"id":2,"battlerName":"Actor1_8","characterIndex":7,"characterName":"Actor1","classId":2,"equips":[0,0,0,0,0],"faceIndex":7,"faceName":"Actor1","traits":[{"code":21,"dataId":0,"value":1.1}],"initialLevel":1,"maxLevel":99,"name":"Тереза","nickname":"","note":"","profile":""},
 {"id":3,"battlerName":"Actor3_8","characterIndex":7,"characterName":"Actor3","classId":3,"equips":[0,0,0,0,0],"faceIndex":7,"faceName":"Actor3","traits":[{"code":21,"dataId":1,"value":1.1}],"initialLevel":1,"maxLevel":99,"name":"Марша","nickname":"","note":"","profile":""},
 {"id":4,"battlerName":"Actor2_7","characterIndex":6,"characterName":"Actor2","classId":4,"equips":[0,0,0,0,0],"faceIndex":6,"faceName":"Actor2","traits":[{"code":21,"dataId":0,"value":1.1}],"initialLevel":1,"maxLevel":99,"name":"Люциус","nickname":"","note":"","profile":""},
