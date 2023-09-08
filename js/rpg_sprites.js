@@ -1661,7 +1661,7 @@ Sprite_StateIcon.prototype.updateIcon = function() {
         this._iconIndex = icons[this._animationIndex];
     } else {
         this._animationIndex = 0;
-        this._iconIndex = 0;
+        this._iconIndex = 1355;
     }
 };
 
